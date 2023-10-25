@@ -1,0 +1,66 @@
+body {
+  background-image: url(../images/main-bg.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(62, 94, 60);
+  font-size: 16px;
+  font-family: Rubik, Roboto, sans-serif;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button {
+  border: none;
+  background: none;
+  outline: none;
+  color: rgb(48, 43, 43);
+  font-size: 16px;
+  font-family: Rubik, Roboto, sans-serif;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
