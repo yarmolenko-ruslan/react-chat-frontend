@@ -20,7 +20,6 @@ const Main = () => {
     const isDisabled = Object.values(values).some((value) => !value);
 
     if (isDisabled) e.preventDefault();
-
   };
 
   return (
@@ -32,6 +31,7 @@ const Main = () => {
             <input
               className={styles.input}
               placeholder="Имя пользователя"
+              maxLength={20}
               name="name"
               value={values[NAME]}
               type="text"
@@ -44,6 +44,7 @@ const Main = () => {
             <input
               className={styles.input}
               placeholder="Название комнаты"
+              maxLength={20}
               name="room"
               value={values[ROOM]}
               type="text"

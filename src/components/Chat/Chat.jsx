@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./chat.module.css";
 import io from "socket.io-client";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,6 +17,19 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [users, setUsers] = useState(0);
+  const messagesEndRef = useRef(null);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = (event) => {
+      setWidth(event.target.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const searchParams = Object.fromEntries(new URLSearchParams(search));
@@ -58,25 +71,37 @@ const Chat = () => {
     setMessage(`${message} ${emoji}`);
   };
 
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [state]);
+
   return (
     <div className={styles.wrap}>
       <div className={styles.header}>
-        <div className={styles.title}>{params.room}</div>
-        <div className={styles.users}>{users} онлайн</div>
+        <div className={styles.header__info}>
+          <div className={styles.title}>{params.room}</div>
+          <div className={styles.users}>{users} онлайн</div>
+        </div>
         <button className={styles.left} onClick={leftRoom}>
-          Выйти из комнаты
+          {width > 560 ? "Выйти из комнаты" : ""}
         </button>
       </div>
       <div className={styles.messages}>
         <Messages messages={state} name={params.name} />
+        <div ref={messagesEndRef} />
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.input}>
           <input
-            placeholder="Что вы хотите сказать?"
+            placeholder={width > 560 ? "Что вы хотите сказать?" : "Пишите"}
             name="message"
             value={message}
             type="text"
+            maxLength={250}
             onChange={handleChange}
             autoComplete="off"
             required
@@ -90,10 +115,9 @@ const Chat = () => {
             </div>
           )}
         </div>
-
-        <div className={styles.button}>
-          <input type="submit" onSubmit={handleSubmit} value="Отправить сообщение" />
-        </div>
+        <button className={styles.button}>
+          {width > 560 ? "Отправить сообщение" : ""}
+        </button>
       </form>
     </div>
   );

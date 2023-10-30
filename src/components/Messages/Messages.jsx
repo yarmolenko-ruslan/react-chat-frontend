@@ -13,7 +13,7 @@ const Messages = ({ messages, name }) => {
         return (
           <div key={i} className={`${styles.message} ${className}`}>
             <span className={styles.user}>{user.name}</span>
-            <div className={styles.text}>{message}</div>
+            <p className={styles.text}>{message}</p>
           </div>
         );
       })}

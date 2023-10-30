@@ -1,3 +1,5 @@
+@import url(../vendor/fonts.css);
+
 body {
   background-image: url(../images/main-bg.jpg);
   background-size: cover;
@@ -5,7 +7,7 @@ body {
   background-repeat: no-repeat;
   background-color: rgb(62, 94, 60);
   font-size: 16px;
-  font-family: Rubik, Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
@@ -41,7 +43,7 @@ button {
   outline: none;
   color: rgb(48, 43, 43);
   font-size: 16px;
-  font-family: Rubik, Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 a {
